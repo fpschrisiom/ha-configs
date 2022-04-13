@@ -1,22 +1,8 @@
-'1538381217121':
-  alias: Wake Xerxes
-  sequence:
-  - data:
-      mac: 00:21:85:3e:97:2f
-    service: wake_on_lan.send_magic_packet
-    
-'1538381217122':
-  alias: Wake Chris PC
-  sequence:
-  - data:
-      mac: d8:cb:8a:83:9f:c3
-    service: wake_on_lan.send_magic_packet
-    
 '1538381217123':
   alias: Wake Chris-Desktop
   sequence:
   - data:
-      mac: 40-8D-5C-E6-BB-88
+      mac: !secret chrispc_mac
     service: wake_on_lan.send_magic_packet
 
 #Clean Dining Room
@@ -83,3 +69,49 @@ clean_master_bathroom_bedroom:
       data:
         topic: valetudo/robot/MapSegmentationCapability/clean/set
         payload: '{"segment_ids": ["20","19"], "iterations": 1, "customOrder": true}'
+
+#Samsung TV Bedroom buttons
+#tv_sleep:
+#  alias: Sleep
+#  sequence:
+#  - service: media_player.samsungtv_tizen
+#    data:
+#      entity_id: media_player.samsungtv_tizen
+#      media_content_id: KEY_SLEEP
+#media_content_type: "send_key"
+
+#tv_Text:
+#  alias: Text
+#  sequence:
+#  - service: media_player.samsungtv_tizen
+#    data:
+#      entity_id: media_player.samsungtv_tizen
+#      media_content_id: send_text
+#      media_content_type: "Front Door Open"
+
+tv_mode_sleep:
+  alias: Movie
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.samsung_tv_remote
+      media_content_type: "send_key"
+      media_content_id: KEY_SLEEP
+
+tv_mode_movie:
+  alias: movie_sleep
+  sequence:
+  - service: media_player.play_media
+    data:
+      entity_id: media_player.samsung_tv_remote
+      media_content_type: "send_key"
+      media_content_id: KEY_PMODE
+
+
+
+
+
+
+
+
+
